@@ -1,0 +1,19 @@
+<h1>Add a Question</h1>
+
+
+<%= form_for @question, url: {action: "create"} do |f| %>
+    <div class="form-group">
+    <label for="questiontitle"><%= f.label :title %></label>
+    <%= f.text_field :title%>
+    </div>
+
+    <div class="form-group">
+    <%=f.label :body %>
+    <%=f.text_area :body %>
+    </div>
+
+    <%= f.submit "Save" %>
+
+    <% end %>
+
+    
