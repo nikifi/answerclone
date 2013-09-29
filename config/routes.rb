@@ -68,7 +68,8 @@ Answerclone::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 root :to => "questions#index"
-resources :questions
+resources :questions do
+  resources :answers, only: [:new, :destroy]
 #match '/questions/new', :to => 'questions#new'
   
 end
