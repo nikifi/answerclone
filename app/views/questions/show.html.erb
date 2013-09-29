@@ -1,37 +1,22 @@
 <h1><%= @question.title %></h1>
-
-<p> <%= @question.body %></p>
+<p><%= @question.body %></p>
 
 <p> Posted By: 
 <% if ! @question.user.respond_to?("profile_name") %>
-
- <%= "User Not Available" %> 
-
+  <%= "User Not Available" %> 
 <% else %>
+  <%= @question.user.profile_name %></p>
+<% end %> 
 
+<div>
+  <%=@question.answers%>
 
-  <%= @question.user.profile_name %> </p>
+</div>
 
-  <%end%>
-
-
-
-
-
-  
-
-  <%= form_for @answer, url: {action: "create"} do |f| %>
-
-
-
-    <div class="form-group">
-    <label for="questiontitle"><%= f.label :your_answer %></label>
-    <%= f.text_area :body%>
-    </div>
-
-
-    <%= f.submit "Save" %>
-
-    <% end %>
-
-    
+<%= form_for [@question, Answer.new] do |f| %>
+  <div class="form-group">
+  <label for="answerbody"><%= f.label :your_answer %></label>
+  <%= f.text_area :body %>
+  </div>
+  <%= f.submit "Save" %>
+<% end %>

@@ -5,19 +5,15 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    #@answer = @question.answers.build(params[:answer])
-    #@answer = Answer.new
-    @answer = Answer.where(:question_id => @question.id)
-    
+    #@answer = Answer.create
+    #@answer = @question.answers
   end
 
   def new
-      @question = Question.new
-        if ! user_signed_in?
-           redirect_to new_user_registration_path     
-
-        end
-
+    @question = Question.new
+    if ! user_signed_in?
+      redirect_to new_user_registration_path
+    end
   end
 
   def edit
@@ -25,7 +21,6 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(params[:question])
-
 
     if @question.save
       redirect_to @question
@@ -36,6 +31,4 @@ class QuestionsController < ApplicationController
 
   def search
   end
-
-
 end

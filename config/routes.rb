@@ -1,5 +1,9 @@
 Answerclone::Application.routes.draw do
-  devise_for :users
+=begin
+  get "answers/create"
+
+  get "answers/destroy"
+
 
   get "questions/index"
 
@@ -10,6 +14,8 @@ Answerclone::Application.routes.draw do
   get "questions/edit"
 
   get "questions/search"
+=end
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -67,9 +73,13 @@ Answerclone::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+
+devise_for :users
 root :to => "questions#index"
 resources :questions do
-  resources :answers, only: [:new, :destroy]
+  resources :answers, :only => [:create, :destroy]
+end
 #match '/questions/new', :to => 'questions#new'
   
 end
