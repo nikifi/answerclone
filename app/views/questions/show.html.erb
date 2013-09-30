@@ -9,7 +9,11 @@
 <% end %> 
 
 <div>
-  <%=@question.answers%>
+  <% @question.answers.each do |answer| %>
+  <p>
+  <%= answer.body %>
+</p>
+  <% end %>
 
 </div>
 
