@@ -11,16 +11,18 @@
 <div>
   <% @question.answers.each do |answer| %>
   <p>
-  <%= answer.body %>
-</p>
+    <%= answer.body %>
+    <%=answer.user.profile_name%>
+ </p>
   <% end %>
 
 </div>
 
-<%= form_for [@question, Answer.new] do |f| %>
+<%= form_for [@question, @answer] do |f| %>
   <div class="form-group">
   <label for="answerbody"><%= f.label :your_answer %></label>
   <%= f.text_area :body %>
+
   </div>
   <%= f.submit "Save" %>
 <% end %>
